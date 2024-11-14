@@ -2,16 +2,22 @@ class Solution {
    public int[] searchRange(int[] nums, int target) {
         int start = 0;
         int end = nums.length-1;
-        int first = binSearch(int[] nums,int target,int index);
+        int first = binSearch(int[] nums,int target,boolean index);
         int second = binSearch(int[] nums,int target,boolean index);
+      int[] res={-1,-1};
+      res[0]=first;
+      res[1]=second;
+      return res;
+
+        
 
     }
     public int binSearch(int[] nums,int target,boolean findindex){
         int start = 0;
         int end = nums.length-1;
-        int mid=(start+end-start)/2;
         int ans = -1;
         while(start<end){
+       int mid=(start+end-start)/2;
             if(target<mid){
                 end=mid-1;
             }
@@ -21,11 +27,15 @@ class Solution {
             else{
                 ans = mid;
                 if(findindex){
-                    
+                    end=mid-1;
                 }
+                  else{
+                     start=mid+1;
+                     }
 
             }
         }
+      return ans;
     }
     //this function just retns the index value of target
   
